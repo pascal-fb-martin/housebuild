@@ -27,7 +27,7 @@ GITHUB="https://github.com/pascal-fb-martin"
 
 function install () {
     (echo "=== Checking $1"
-     if  [ -d $1 ] ; then
+     if [ -d $1 ] ; then
         cd $1
         git pull | grep -q 'Already up to date'
         if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
@@ -46,6 +46,8 @@ function install () {
      fi
     )
 }
+
+# Implicitely include common dependencies and accept short names:
 
 install echttp 1
 install houseportal 1

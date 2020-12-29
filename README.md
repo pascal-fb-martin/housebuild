@@ -43,6 +43,12 @@ houseinstall sprinkler
 houseinstall lights
 ```
 
+This script systematically installs mandatory, or common, dependencies. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
+
+Multiple names may be provided, which is a way to install optional components. For example:
+```
+houseinstall clock sprinkler
+```
 Otherwise, all components of the House software suite follow the same standard installation steps:
 * Install all dependencies.
 * Clone the git repository.

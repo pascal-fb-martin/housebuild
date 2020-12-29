@@ -3,6 +3,8 @@ SHARE=/usr/local/share/house
 
 all:
 
+rebuild:
+
 install:
 	mkdir -p /usr/local/bin
 	mkdir -p /var/lib/house
