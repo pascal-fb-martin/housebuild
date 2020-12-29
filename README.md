@@ -25,13 +25,13 @@ All the web services above are based on [echttp](https://github.com/pascal-fb-ma
 
 The services typically follow one of these web interfaces:
 
-* Event: how to collect and access application events. I always want to know if the actions that I scheduled got executed.
+* Event: collect and access application events. I always want to know if the actions that I scheduled got executed.
 
-* Control: how to locate and operate digital controls.
+* Control: locate and operate digital controls.
 
 * Sensor: locate and read digital and analog sensors.
 
-* Waterindex: locate and get a watering index to adjust sprinkler times to the current weather.
+* Waterindex: locate and get a watering index to adjust sprinkler times according to the current weather.
 
 ## Installation Tool
 
