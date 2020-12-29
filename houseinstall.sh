@@ -58,7 +58,9 @@ for s in $* ; do
           s=houseclock
           ;;
       sprinkler|housesprinkler)
-          install houserelays 0
+          if [[ ! -d housesprinkler || -d houserelays ]] ; then
+             install houserelays 0
+          fi
           install waterwise 0
           s=housesprinkler
           ;;
