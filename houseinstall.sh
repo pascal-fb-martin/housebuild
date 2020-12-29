@@ -54,8 +54,17 @@ install houseportal 1
 
 for s in $* ; do
    case $s in
+      build|housebuild)
+          s=housebuild
+          ;;
       clock|houseclock)
           s=houseclock
+          ;;
+      sensor|housesensor)
+          s=housesensor
+          ;;
+      relays|houserelays)
+          s=houserelays
           ;;
       sprinkler|housesprinkler)
           if [[ ! -d housesprinkler || -d houserelays ]] ; then
