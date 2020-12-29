@@ -51,12 +51,10 @@ function install () {
 
 install echttp 1
 install houseportal 1
+install housebuild 0
 
 for s in $* ; do
    case $s in
-      build|housebuild)
-          s=housebuild
-          ;;
       clock|houseclock)
           s=houseclock
           ;;
