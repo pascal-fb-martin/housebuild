@@ -26,25 +26,25 @@ forceupdate=0
 GITHUB="https://github.com/pascal-fb-martin"
 
 function install () {
-    (echo "=== Checking $1"
-     if [ -d $1 ] ; then
-        cd $1
-        git pull | grep -q 'Already up to date'
-        if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
-           echo "====== Updating $1"
-           make rebuild
-           sudo make install
-           if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
-        fi
-     else
-        echo "====== Installing $1"
-        git clone $GITHUB/$1.git
-        cd $1
-        make rebuild
-        sudo make install
-        if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
-     fi
-    )
+    echo "=== Checking $1"
+    if [ -d $1 ] ; then
+       pushd $1
+       git pull | grep -q 'Already up to date'
+       if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
+          echo "====== Updating $1"
+          make rebuild
+          sudo make install
+          if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
+       fi
+    else
+       echo "====== Installing $1"
+       git clone $GITHUB/$1.git
+       pushd $1
+       make rebuild
+       sudo make install
+       if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
+    fi
+    popd
 }
 
 # Implicitely include common dependencies and accept short names:
