@@ -45,9 +45,9 @@ sudo make install
 popd
 ```
 
-The user still needs to manually install external dependencies beforehand, such as OpenSSL (i.e. libssl-dev) and (possibly) gpiod (i.e libgpiod-dev). On Debian or Raspberry Pi:
+The user still needs to manually install external dependencies beforehand, such as OpenSSL (i.e. libssl-dev) and (possibly) icotool (icoutils) or gpiod (i.e libgpiod-dev). On Debian or Raspberry Pi:
 ```
-sudo apt install libssl-dev libgpiod-dev
+sudo apt install libssl-dev libgpiod-dev icoutils
 ```
 
 The script implicitely installs mandatory, or common, dependencies from other House suite modules. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
