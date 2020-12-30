@@ -35,27 +35,40 @@ The services typically follow one of these web interfaces:
 
 ## Installation Tool
 
-The houseinstall script simplifies building a complete sprinkler or lights control system by automating the installation of all required components.
+The houseinstall script simplifies building a complete system by automating the installation of all required components.
 
-The user still needs to manually install external dependencies beforehand, such as OpenSSL (i.e. libssl-dev) and (possibly) gpiod (i.e libgpiod-dev).
+As a bootstrap step, it must itself be installed manually:
+```
+git clone https://github.com/pascal-fb-martin/housebuild.git
+cd housebuild
+sudo make install
+```
 
-For example:
+The user still needs to manually install external dependencies beforehand, such as OpenSSL (i.e. libssl-dev) and (possibly) gpiod (i.e libgpiod-dev). On Debian or Raspberry Pi:
+```
+sudo apt install libssl-dev libgpiod-dev
+```
+
+The script implicitely installs mandatory, or common, dependencies from other House suite modules. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
+
+The following commands installs the sprinkler control, the lights control, and all their dependent services:
 ```
 houseinstall sprinkler
 houseinstall lights
 ```
 
-This script implicitely installs mandatory, or common, dependencies from other House suite modules. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
-
-Multiple names may be provided, which is a way to install optional components. For example:
+Multiple names may be provided on the same command, which is a way to install optional components. For example:
 ```
 houseinstall clock sprinkler
 ```
-Otherwise, all components of the House software suite follow the same standard installation steps:
+
+The following services names are supported: clock, sensor, relays, sprinkler, lights, orvibo, waterwise.
+
+Note that all components of the House software suite follow the same standard installation steps:
 * Install all dependencies.
 * Clone the git repository.
 * Execute `make rebuild`
 * Execute `sudo make install`
 
-Each component typically run as its own systemd or System V service.
+Each component typically run as its own systemd service.
 
