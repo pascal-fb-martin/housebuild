@@ -49,9 +49,9 @@ function install () {
 
 # Implicitely include common dependencies and accept short names:
 
+install housebuild 0
 install echttp 1
 install houseportal 1
-install housebuild 0
 
 for s in $* ; do
    case $s in
