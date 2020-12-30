@@ -40,8 +40,9 @@ The houseinstall script simplifies building a complete system by automating the 
 As a bootstrap step, it must itself be installed manually:
 ```
 git clone https://github.com/pascal-fb-martin/housebuild.git
-cd housebuild
+pushd housebuild
 sudo make install
+popd
 ```
 
 The user still needs to manually install external dependencies beforehand, such as OpenSSL (i.e. libssl-dev) and (possibly) gpiod (i.e libgpiod-dev). On Debian or Raspberry Pi:
@@ -67,6 +68,7 @@ The following services names are supported: clock, sensor, relays, sprinkler, li
 Note that all components of the House software suite follow the same standard installation steps:
 * Install all dependencies.
 * Clone the git repository.
+* Change to the repository directory.
 * Execute `make rebuild`
 * Execute `sudo make install`
 
