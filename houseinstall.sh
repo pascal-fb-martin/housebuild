@@ -28,7 +28,7 @@ GITHUB="https://github.com/pascal-fb-martin"
 function install () {
     echo "=== Checking $1"
     if [ -d $1 ] ; then
-       pushd $1
+       pushd $1 > /dev/null
        git pull | grep -q 'Already up to date'
        if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
           echo "====== Updating $1"
@@ -39,12 +39,12 @@ function install () {
     else
        echo "====== Installing $1"
        git clone $GITHUB/$1.git
-       pushd $1
+       pushd $1 > /dev/null
        make rebuild
        sudo make install
        if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
     fi
-    popd
+    popd > /dev/null
 }
 
 # Implicitely include common dependencies and accept short names:
