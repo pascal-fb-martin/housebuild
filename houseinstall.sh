@@ -49,7 +49,13 @@ function install () {
 
 # Implicitely include common dependencies and accept short names:
 
-install housebuild 0
+install housebuild 1
+if [[ $forceupdate -eq 1 ]] ; then
+   echo "====== Reloading $0"
+   . $0 $*
+   exit
+fi
+
 install echttp 1
 install houseportal 1
 
