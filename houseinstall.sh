@@ -52,7 +52,7 @@ function install () {
 install housebuild 1
 if [[ $forceupdate -eq 1 ]] ; then
    echo "====== Reloading $0"
-   . $0 $*
+   exec $0 $*
    exit
 fi
 
