@@ -28,41 +28,33 @@ forceupdate=0
 GITHUB="https://github.com/pascal-fb-martin"
 
 function install () {
-    if [[ ${installed[$1]} = 0 ]] ; then
-       echo "=== Checking $1"
-       if [ -d $1 ] ; then
-          pushd $1 > /dev/null
-          git pull | grep -q 'Already up to date'
-          if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
-             echo "====== Updating $1"
-             make rebuild
-             sudo make install
-             if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
-          fi
-       else
-          echo "====== Installing $1"
-          git clone $GITHUB/$1.git
-          pushd $1 > /dev/null
+    if [[ -v installed[$1] ]] ; then return 0 ; fi
+    echo "=== Checking $1"
+    if [ -d $1 ] ; then
+       pushd $1 > /dev/null
+       git pull | grep -q 'Already up to date'
+       if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
+          echo "====== Updating $1"
           make rebuild
           sudo make install
           if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
        fi
-       popd > /dev/null
-       installed[$1]=1
+    else
+       echo "====== Installing $1"
+       git clone $GITHUB/$1.git
+       pushd $1 > /dev/null
+       make rebuild
+       sudo make install
+       if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
     fi
+    popd > /dev/null
+    installed[$1]=1
 }
 
 # Implicitely include common dependencies and accept short names:
 
 projects=$*
 if [[ "x$1" = "xupdate" ]] ; then projects=`ls` ; fi
-
-for s in $projects ; do
-   installed[$s]=0
-done
-installed[housebuild]=0
-installed[echttp]=0
-installed[houseportal]=0
 
 install housebuild 1
 if [[ $forceupdate -eq 1 ]] ; then
