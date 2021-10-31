@@ -54,19 +54,22 @@ function install () {
 
 # Implicitely include common dependencies and accept short names:
 
-install housebuild 1
-if [[ $forceupdate -eq 1 ]] ; then
-   echo "====== Reloading $0"
-   exec $0 $*
-   exit
-fi
-
 projects=$*
 if [[ "x$1" = "xupdate" ]] ; then projects=`ls` ; fi
 
 for s in $projects ; do
    installed[$s]=0
 done
+installed[housebuild]=0
+installed[echttp]=0
+installed[houseportal]=0
+
+install housebuild 1
+if [[ $forceupdate -eq 1 ]] ; then
+   echo "====== Reloading $0"
+   exec $0 $*
+   exit
+fi
 
 install echttp 1
 install houseportal 1
