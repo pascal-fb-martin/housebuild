@@ -37,6 +37,8 @@ The services typically follow one of these web interfaces:
 
 The houseinstall script simplifies building a complete system by automating the installation of all required components.
 
+The tool must be run from the directory where the git repositories are to be created (including itself). If it is used for update later on, it must be run from the same directory.
+
 As a bootstrap step, it must itself be installed manually:
 ```
 git clone https://github.com/pascal-fb-martin/housebuild.git
@@ -73,4 +75,11 @@ Note that all components of the House software suite follow the same standard in
 * Execute `sudo make install`
 
 Each component typically run as its own systemd service.
+
+## Software Update
+
+All installed software can be updated later using the keyword `update`:
+```
+houseinstall update
+```
 
