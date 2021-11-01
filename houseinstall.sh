@@ -77,6 +77,9 @@ for s in $projects ; do
       relays|houserelays)
           s=houserelays
           ;;
+      wiz|housewiz)
+          s=housewiz
+          ;;
       sprinkler|housesprinkler)
           if [[ ! -d housesprinkler || -d houserelays ]] ; then
              install houserelays 0
@@ -86,6 +89,7 @@ for s in $projects ; do
           ;;
       lights|houselights)
           install orvibo 0
+          install housewiz 0
           s=houselights
           ;;
    esac
