@@ -5,7 +5,7 @@ all:
 
 rebuild:
 
-install:
+dev:
 	mkdir -p /usr/local/bin
 	mkdir -p /var/lib/house
 	mkdir -p /etc/house
@@ -14,6 +14,8 @@ install:
 	cp housedev.sh /usr/local/bin/housedev
 	chmod 755 /usr/local/bin/houseinstall /usr/local/bin/housedev
 	chown root:root /usr/local/bin/houseinstall /usr/local/bin/housedev
+
+install: dev
 
 uninstall:
 	rm -f /usr/local/bin/houseinstall /usr/local/bin/housedev

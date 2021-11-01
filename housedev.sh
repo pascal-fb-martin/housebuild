@@ -23,23 +23,31 @@
 # force a rebuild of all items found. Useful for developpers only.
 #
 
+declare -A built
+
 function rebuild () {
+    if [[ -v built[$1] ]] ; then return 0 ; fi
     (
      if [ -d $1 ] ; then
         cd $1
         echo "=== Rebuilding $1"
         make rebuild
+        if [[ $2 -ne 0 ]] ; then sudo make dev ; fi
      fi
     )
+    built[$1]=1
 }
 
 # Implicitely include common dependencies and accept short names:
 
-rebuild echttp
-rebuild houseportal
-rebuild housebuild
+projects=$*
+if [[ "x$1" = "xupdate" ]] ; then projects=`dirname */Makefile` ; fi
 
-for s in $* ; do
+rebuild housebuild 1
+rebuild echttp 1
+rebuild houseportal 1
+
+for s in $projects ; do
    case $s in
       clock|houseclock)
           s=houseclock
@@ -50,18 +58,22 @@ for s in $* ; do
       relays|houserelays)
           s=houserelays
           ;;
+      wiz|housewiz)
+          s=housewiz
+          ;;
       sprinkler|housesprinkler)
           if [[ ! -d housesprinkler || -d houserelays ]] ; then
              install houserelays
           fi
-          rebuild waterwise
+          rebuild waterwise 0
           s=housesprinkler
           ;;
       lights|houselights)
-          rebuild orvibo
+          rebuild orvibo 0
+          rebuild housewiz 0
           s=houselights
           ;;
    esac
-   rebuild $s
+   rebuild $s 0
 done
 

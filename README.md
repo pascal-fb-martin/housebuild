@@ -83,4 +83,5 @@ All installed software can be updated later using the keyword `update`:
 ```
 houseinstall update
 ```
+A similar command, `housedev` can be used to recompile a project and its dependencies. This command does _not_ install. The same options are supported, including `update`.
 
