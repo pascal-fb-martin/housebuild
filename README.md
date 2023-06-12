@@ -18,9 +18,11 @@ The following web services are currently part of the suite:
 * [HouseRelays](https://github.com/pascal-fb-martin/houserelays): control your home through relays (or triacs). This module depends on gpiod.
 * [Orvibo](https://github.com/pascal-fb-martin/orvibo): control the Orvibo S20 smart plugs. Too bad this model has been discontinued..
 * [HouseWiz](https://github.com/pascal-fb-martin/housewiz): control the Philips Wiz Connected smart bulbs and plugs.
+* [HouseKasa](https://github.com/pascal-fb-martin/housekasa): control the TP-Link Kasa bulbs and plugs.
 * [WaterWise](https://github.com/pascal-fb-martin/waterwise): get the watering index from the South California Water District. This is for people in the Los Angeles area.
 * [HouseSprinkler](https://github.com/pascal-fb-martin/housesprinkler): an irrigation system that schedules your sprinklers. Combine it with [WaterWise](https://github.com/pascal-fb-martin/waterwise) and [HouseRelays](https://github.com/pascal-fb-martin/houserelays) and you get your very own smart irrigation system.
 * [HouseLights](https://github.com/pascal-fb-martin/houselights): schedule your home lights when you are on travel, or anything attached to a (smart) plug.
+* [HouseDepot](https://github.com/pascal-fb-martin/housedepot): a centralized and versioned store for applications configuration.
 
 All the web services above are based on [echttp](https://github.com/pascal-fb-martin/echttp), a HTTP environment to be embedded in C applications. Provides both a HTTP server, a HTTP client and JSON, XML decoding libraries.
 
