@@ -24,7 +24,7 @@
 
 # Install dependencies (on Debian for now)
 if [ -e /etc/debian_version ] ; then
-  sudo apt install git libssl-dev icoutils
+  sudo apt install git libssl-dev icoutils libgpiod-dev
 fi
 
 declare -A installed
@@ -80,8 +80,13 @@ for s in $projects ; do
           s=housesensor
           ;;
       relays|houserelays)
-          if [ -e /etc/debian_version ] ; then sudo apt install libgpiod-dev ; fi
           s=houserelays
+          ;;
+      depot|housedepot)
+          s=housedepot
+          ;;
+      kasa|housekasa)
+          s=housekasa
           ;;
       wiz|housewiz)
           s=housewiz
@@ -96,6 +101,7 @@ for s in $projects ; do
       lights|houselights)
           install orvibo 0
           install housewiz 0
+          install housekasa 0
           s=houselights
           ;;
    esac

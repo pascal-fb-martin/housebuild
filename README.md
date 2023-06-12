@@ -38,6 +38,8 @@ The services typically follow one of these web interfaces:
 
 The houseinstall script simplifies building a complete system by automating the installation of all required components.
 
+The user must have sudo privilege.
+
 The tool must be run from the directory where the git repositories are to be created (including itself). If it is used for update later on, it must be run from the same directory.
 
 As a bootstrap step, it must itself be installed manually:
@@ -48,12 +50,9 @@ sudo make install
 popd
 ```
 
-The user still needs to manually install external dependencies beforehand, such as OpenSSL (i.e. libssl-dev) and (possibly) icotool (icoutils) or gpiod (i.e libgpiod-dev). On Debian or Raspberry Pi:
-```
-sudo apt install libssl-dev libgpiod-dev icoutils
-```
+One Debian, the tool will automatically install external dependencies beforehand, such as Git, OpenSSL (i.e. libssl-dev), icotool (icoutils) and (possibly) or gpiod (i.e libgpiod-dev). On other Linux distributions these dependencies must be installed manually.
 
-The script implicitely installs mandatory, or common, dependencies from other House suite modules. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
+The script automatically installs mandatory, or common, dependencies from other House suite modules. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
 
 The following commands installs the sprinkler control, the lights control, and all their dependent services:
 ```
