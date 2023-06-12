@@ -52,7 +52,7 @@ sudo make install
 popd
 ```
 
-One Debian, the tool will automatically install external dependencies beforehand, such as Git, OpenSSL (i.e. libssl-dev), icotool (icoutils) and (possibly) or gpiod (i.e libgpiod-dev). On other Linux distributions these dependencies must be installed manually.
+On Debian, the tool will automatically install external dependencies beforehand, such as Git, OpenSSL (i.e. libssl-dev), icotool (icoutils) and (possibly) or gpiod (i.e libgpiod-dev). On other Linux distributions these dependencies must be installed manually.
 
 The script automatically installs mandatory, or common, dependencies from other House suite modules. It can also be used to update components that were already installed. If nothing needs to be done, no action is performed.
 
