@@ -22,6 +22,11 @@
 # This script handles both the initial install and later updates.
 #
 
+# Install dependencies (on Debian for now)
+if [ -e /etc/debian_version ] ; then
+  sudo apt install git libssl-dev icoutils
+fi
+
 declare -A installed
 
 forceupdate=0
@@ -75,6 +80,7 @@ for s in $projects ; do
           s=housesensor
           ;;
       relays|houserelays)
+          if [ -e /etc/debian_version ] ; then sudo apt install libgpiod-dev ; fi
           s=houserelays
           ;;
       wiz|housewiz)
