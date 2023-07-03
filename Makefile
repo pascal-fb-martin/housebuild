@@ -20,3 +20,11 @@ install: dev
 uninstall:
 	rm -f /usr/local/bin/houseinstall /usr/local/bin/housedev
 
+install-debian: install
+
+uninstall-debian: uninstall
+
+install-void: install
+
+uninstall-void: uninstall
+

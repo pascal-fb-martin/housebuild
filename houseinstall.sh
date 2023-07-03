@@ -22,11 +22,6 @@
 # This script handles both the initial install and later updates.
 #
 
-# Install dependencies (on Debian for now)
-if [ -e /etc/debian_version ] ; then
-  sudo apt install git libssl-dev icoutils libgpiod-dev
-fi
-
 declare -A installed
 
 forceupdate=0
@@ -41,7 +36,7 @@ function install () {
        if [[ $? -ne 0 || $forceupdate -eq 1 ]] ; then
           echo "====== Updating $1"
           make rebuild
-          sudo make install
+          sudo make $MAKEINSTALL
           if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
        fi
     else
@@ -49,12 +44,38 @@ function install () {
        git clone $GITHUB/$1.git
        pushd $1 > /dev/null
        make rebuild
-       sudo make install
+       sudo make $MAKEINSTALL
        if [[ $2 -ne 0 ]] ; then forceupdate=1 ; fi
     fi
     popd > /dev/null
     installed[$1]=1
 }
+
+# Identify the Linux distribution
+ID=unknown
+if [[ -e /etc/os-release ]] ; then
+    source /etc/os-release
+elif [[ -e /usr/lib/os-release ]] ; then
+    source /usr/lib/os-release
+fi
+MAKEINSTALL=install-$ID
+
+# Install third party dependencies (on Debian and Void for now)
+case $ID in
+  debian)
+    sudo apt install git libssl-dev icoutils libgpiod-dev
+    ;;
+  void)
+    sudo xbps-install git openssl-devel icoutils
+    ;;
+  *)
+    echo "Warning: $ID is not an explicitly supported environment"
+    MAKEINSTALL=install
+    ;;
+esac
+
+if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
+
 
 # Implicitely include common dependencies and accept short names:
 
