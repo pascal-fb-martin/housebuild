@@ -65,6 +65,9 @@ case $ID in
   debian)
     sudo apt install git libssl-dev icoutils libgpiod-dev
     ;;
+  devuan)
+    sudo apt install git libssl-dev icoutils libgpiod-dev
+    ;;
   void)
     sudo xbps-install git openssl-devel icoutils
     ;;
