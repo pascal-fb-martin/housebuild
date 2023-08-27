@@ -58,7 +58,7 @@ if [[ -e /etc/os-release ]] ; then
 elif [[ -e /usr/lib/os-release ]] ; then
     source /usr/lib/os-release
 fi
-MAKEINSTALL=install-$ID
+INSTALLTARGET=install-$ID
 
 # Install third party dependencies (on Debian and Void for now)
 case $ID in
@@ -73,7 +73,7 @@ case $ID in
     ;;
   *)
     echo "Warning: $ID is not an explicitly supported environment"
-    MAKEINSTALL=install
+    INSTALLTARGET=install
     ;;
 esac
 
@@ -92,7 +92,9 @@ if [[ $forceupdate -eq 1 ]] ; then
    exit
 fi
 
+MAKEINSTALL=install
 install echttp 1
+MAKEINSTALL=$INSTALLTARGET
 install houseportal 1
 
 for s in $projects ; do
