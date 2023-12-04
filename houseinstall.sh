@@ -85,6 +85,7 @@ if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 projects=$*
 if [[ "x$1" = "xupdate" ]] ; then projects=`ls` ; fi
 
+MAKEINSTALL=install
 install housebuild 1
 if [[ $forceupdate -eq 1 ]] ; then
    echo "====== Reloading $0"
@@ -92,7 +93,6 @@ if [[ $forceupdate -eq 1 ]] ; then
    exit
 fi
 
-MAKEINSTALL=install
 install echttp 1
 MAKEINSTALL=$INSTALLTARGET
 install houseportal 1
