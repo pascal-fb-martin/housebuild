@@ -61,7 +61,7 @@ fi
 INSTALLTARGET=install-${ID_LIKE:-$ID}
 
 # Install third party dependencies (on Debian and Void for now)
-case $ID in
+case ${ID_LIKE:-$ID} in
   debian)
     sudo apt install git libssl-dev icoutils libgpiod-dev
     ;;
