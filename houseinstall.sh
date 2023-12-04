@@ -58,7 +58,7 @@ if [[ -e /etc/os-release ]] ; then
 elif [[ -e /usr/lib/os-release ]] ; then
     source /usr/lib/os-release
 fi
-INSTALLTARGET=install-$ID
+INSTALLTARGET=install-${ID_LIKE:-$ID}
 
 # Install third party dependencies (on Debian and Void for now)
 case $ID in
