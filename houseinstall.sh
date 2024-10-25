@@ -111,6 +111,12 @@ for s in $projects ; do
       depot|housedepot)
           s=housedepot
           ;;
+      saga|housesaga)
+          s=housesaga
+          ;;
+      tuya|housetuya)
+          s=housetuya
+          ;;
       kasa|housekasa)
           s=housekasa
           ;;
@@ -128,6 +134,7 @@ for s in $projects ; do
           install orvibo 0
           install housewiz 0
           install housekasa 0
+          install housetuya 0
           s=houselights
           ;;
    esac
