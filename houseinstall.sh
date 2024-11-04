@@ -123,11 +123,15 @@ for s in $projects ; do
       wiz|housewiz)
           s=housewiz
           ;;
+      cimis|housecimis)
+          s=housecimis
+          ;;
       sprinkler|housesprinkler)
           if [[ ! -d housesprinkler || -d houserelays ]] ; then
              install houserelays 0
           fi
           install waterwise 0
+          install housecimis 0
           s=housesprinkler
           ;;
       lights|houselights)
