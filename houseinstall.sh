@@ -77,15 +77,24 @@ case ${ID_LIKE:-$ID} in
     ;;
 esac
 
-# The "dev" option only installs development libraries. FOR DEVELOPERS ONLY.
+# Always check that houseinstall is up-to-date first.
+#
+install housebuild 1
+if [[ $forceupdate -eq 1 ]] ; then
+   echo "====== Reloading $0"
+   exec $0 $*
+   exit
+fi
 
+# The "dev" option only installs development libraries. FOR DEVELOPERS ONLY.
+#
 MAKEINSTALL=install
 if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 
 
 # The "update" (or "upgrade") option updates all repositories that are
-# present.
-
+# already present.
+#
 projects=$*
 if [[ "x$1" = "xupgrade" ]] ; then shift ; projects="update $*" ; fi
 if [[ "x$1" = "xupdate" ]] ; then
@@ -98,14 +107,7 @@ if [[ "x$1" = "xupdate" ]] ; then
 fi
 
 # Implicitely include common dependencies and accept short names:
-
-install housebuild 1
-if [[ $forceupdate -eq 1 ]] ; then
-   echo "====== Reloading $0"
-   exec $0 $*
-   exit
-fi
-
+#
 install echttp 1
 MAKEINSTALL=$INSTALLTARGET
 install houseportal 1
