@@ -88,25 +88,22 @@ if [[ $forceupdate -eq 1 ]] ; then
 fi
 
 # The "dev" option only installs development libraries. FOR DEVELOPERS ONLY.
+# The "update" (or "upgrade") option updates all repositories that are
+# already present. All these option are exclusive (first argument only).
 #
 MAKEINSTALL=install
-if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
-
-
-# The "update" (or "upgrade") option updates all repositories that are
-# already present.
-#
+if [[ "x$1" = "xdev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 isupdate=0
-if [[ "x$1" = "xupgrade" ]] ; then isupdate=1 ; shift ; fi
-if [[ "x$1" = "xupdate" ]] ; then isupdate=1 ; shift ; fi
+if [[ "x$1" = "xupgrade" ]] ; then isupdate=1 ; fi
+if [[ "x$1" = "xupdate" ]] ; then isupdate=1 ; fi
 
 projects=$*
 if [[ $isupdate -gt 0 ]] ; then
+   shift
    presents=
    for d in `ls` ; do
       if [ -d $d/.git ] ; then presents="$presents $d" ; fi
    done
-   shift
    projects=`echo "$presents $*" | xargs`
 fi
 
