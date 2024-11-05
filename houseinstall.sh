@@ -96,14 +96,14 @@ if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 # already present.
 #
 projects=$*
-if [[ "x$1" = "xupgrade" ]] ; then shift ; projects="update $*" ; fi
+if [[ "x$1" = "xupgrade" ]] ; then shift ; projects=`echo "update $*" | xargs`; fi
 if [[ "x$1" = "xupdate" ]] ; then
    presents=
    for d in `ls` ; do
       if [ -d $d/.git ] ; then presents="$presents $d" ; fi
    done
    shift
-   projects="$presents $*"
+   projects=`echo "$presents $*" | xargs`
 fi
 
 # Implicitely include common dependencies and accept short names:
