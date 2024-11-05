@@ -79,6 +79,7 @@ esac
 
 # Always check that houseinstall is up-to-date first.
 #
+MAKEINSTALL=install
 install housebuild 1
 if [[ $forceupdate -eq 1 ]] ; then
    echo "====== Reloading $0"
