@@ -96,8 +96,8 @@ if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 # already present.
 #
 isupdate=0
-if [[ "x$1" = "xupgrade" ]] ; then isupdate=1; fi
-if [[ "x$1" = "xupdate" ]] ; then isupdate=1; fi
+if [[ "x$1" = "xupgrade" ]] ; then isupdate=1 ; shift ; fi
+if [[ "x$1" = "xupdate" ]] ; then isupdate=1 ; shift ; fi
 
 projects=$*
 if [[ "$isupdate -gt 0 ]] ; then
