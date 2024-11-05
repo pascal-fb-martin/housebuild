@@ -101,7 +101,7 @@ if [[ "x$1" = "xupgrade" ]] ; then isupdate=1 ; shift ; fi
 if [[ "x$1" = "xupdate" ]] ; then isupdate=1 ; shift ; fi
 
 projects=$*
-if [[ "$isupdate -gt 0 ]] ; then
+if [[ $isupdate -gt 0 ]] ; then
    presents=
    for d in `ls` ; do
       if [ -d $d/.git ] ; then presents="$presents $d" ; fi
