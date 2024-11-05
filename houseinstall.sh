@@ -95,9 +95,12 @@ if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 # The "update" (or "upgrade") option updates all repositories that are
 # already present.
 #
+isupdate=0
+if [[ "x$1" = "xupgrade" ]] ; then isupdate=1; fi
+if [[ "x$1" = "xupdate" ]] ; then isupdate=1; fi
+
 projects=$*
-if [[ "x$1" = "xupgrade" ]] ; then shift ; projects=`echo "update $*" | xargs`; fi
-if [[ "x$1" = "xupdate" ]] ; then
+if [[ "$isupdate -gt 0 ]] ; then
    presents=
    for d in `ls` ; do
       if [ -d $d/.git ] ; then presents="$presents $d" ; fi
