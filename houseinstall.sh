@@ -147,7 +147,9 @@ for s in $projects ; do
              install houserelays 0
           fi
           install waterwise 0
-          install housecimis 0
+          ## The CIMIS web site does not like high query traffic and requires
+          ## setting up an access key, so don't install it by default.
+          # install housecimis 0
           s=housesprinkler
           ;;
       lights|houselights)
