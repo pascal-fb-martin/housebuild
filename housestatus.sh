@@ -20,10 +20,10 @@
 # HouseStatus: Retrieve the status of git clones present.
 #
 # CAUTION: this script is similar to houseinstall.sh, except that it just
-# force a rebuild of all items found. Useful for developpers only.
+# shows the status for all repositories found. Useful for developers only.
 #
 
 cd ~/Projects
 clear
-for i in `ls` ; do if [[ -d $i/.git ]] ; then (echo "=============================================== $i" ; cd $i ; git status) ; fi; done
+for i in `ls` ; do if [[ -d $i/.git ]] ; then (echo "=============================================== $i" ; cd $i ; git status -s -uall | grep -v node_modules | grep -v donotcommit) ; fi; done
 

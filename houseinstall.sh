@@ -77,15 +77,28 @@ case ${ID_LIKE:-$ID} in
     ;;
 esac
 
+# The "dev" option only installs development libraries. FOR DEVELOPERS ONLY.
+
+MAKEINSTALL=install
 if [[ "x$1" = "x-dev" ]] ; then MAKEINSTALL=dev ; shift ; fi
 
 
-# Implicitely include common dependencies and accept short names:
+# The "update" (or "upgrade") option updates all repositories that are
+# present.
 
 projects=$*
-if [[ "x$1" = "xupdate" ]] ; then projects=`ls` ; fi
+if [[ "x$1" = "xupgrade" ]] ; then shift ; projects="update $*" ; fi
+if [[ "x$1" = "xupdate" ]] ; then
+   presents=
+   for d in `ls` ; do
+      if [ -d $d/.git ] ; then presents="$presents $d" ; fi
+   done
+   shift
+   projects="$presents $*"
+fi
 
-MAKEINSTALL=install
+# Implicitely include common dependencies and accept short names:
+
 install housebuild 1
 if [[ $forceupdate -eq 1 ]] ; then
    echo "====== Reloading $0"
