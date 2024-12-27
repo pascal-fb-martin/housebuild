@@ -118,6 +118,9 @@ for s in $projects ; do
       clock|houseclock)
           s=houseclock
           ;;
+      linux|houselinux)
+          s=houselinux
+          ;;
       sensor|housesensor)
           s=housesensor
           ;;
