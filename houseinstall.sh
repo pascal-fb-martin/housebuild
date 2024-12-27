@@ -118,20 +118,20 @@ for s in $projects ; do
       clock|houseclock)
           s=houseclock
           ;;
-      linux|houselinux)
-          s=houselinux
-          ;;
-      sensor|housesensor)
-          s=housesensor
-          ;;
-      relays|houserelays)
-          s=houserelays
-          ;;
       depot|housedepot)
           s=housedepot
           ;;
       saga|housesaga)
           s=housesaga
+          ;;
+      linux|houselinux)
+          s=houselinux
+          ;;
+      motion|housemotion)
+          s=housemotion
+          ;;
+      sensor|housesensor)
+          s=housesensor
           ;;
       tuya|housetuya)
           s=housetuya
@@ -141,6 +141,9 @@ for s in $projects ; do
           ;;
       wiz|housewiz)
           s=housewiz
+          ;;
+      relays|houserelays)
+          s=houserelays
           ;;
       cimis|housecimis)
           s=housecimis
