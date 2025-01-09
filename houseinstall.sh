@@ -91,8 +91,7 @@ fi
 # The "update" (or "upgrade") option updates all repositories that are
 # already present. All these option are exclusive (first argument only).
 #
-MAKEINSTALL=install
-if [[ "x$1" = "xdev" ]] ; then MAKEINSTALL=dev ; shift ; fi
+if [[ "x$1" = "xdev" ]] ; then INSTALLTARGET=dev ; shift ; fi
 isupdate=0
 if [[ "x$1" = "xupgrade" ]] ; then isupdate=1 ; fi
 if [[ "x$1" = "xupdate" ]] ; then isupdate=1 ; fi
