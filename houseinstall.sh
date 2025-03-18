@@ -63,13 +63,13 @@ INSTALLTARGET=install-${ID_LIKE:-$ID}
 # Install third party dependencies (on Debian and Void for now)
 case ${ID_LIKE:-$ID} in
   debian)
-    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev
+    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev tcl-dev
     ;;
   devuan)
-    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev
+    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev tcl-dev
     ;;
   void)
-    sudo xbps-install gcc make git openssl-devel icoutils libuuid-devel
+    sudo xbps-install gcc make git openssl-devel icoutils libuuid-devel tcl-devel
     ;;
   *)
     echo "Warning: $ID is not an explicitly supported environment"
@@ -116,6 +116,9 @@ for s in $projects ; do
    case $s in
       clock|houseclock)
           s=houseclock
+          ;;
+      mech|housemech)
+          s=housemech
           ;;
       depot|housedepot)
           s=housedepot
