@@ -120,6 +120,12 @@ for s in $projects ; do
       mech|housemech)
           s=housemech
           ;;
+      sun|housesun)
+          s=housesun
+          ;;
+      almanac|housealmanac)
+          s=housealmanac
+          ;;
       depot|housedepot)
           s=housedepot
           ;;
@@ -128,6 +134,9 @@ for s in $projects ; do
           ;;
       linux|houselinux)
           s=houselinux
+          ;;
+      dvr|housedvr)
+          s=housedvr
           ;;
       motion|housemotion)
           s=housemotion
@@ -166,6 +175,9 @@ for s in $projects ; do
           install housekasa 0
           install housetuya 0
           s=houselights
+          ;;
+      test|housetest)
+          s=housetest
           ;;
    esac
    install $s 0
