@@ -12,16 +12,27 @@ This suite is designed to run under Linux, most specifically the Debian distribu
 ## The House Suite
 
 The following web services are currently part of the suite:
+
 * [HousePortal](https://github.com/pascal-fb-martin/houseportal): the discovery and proxy service for the House suite.
+
 * [HouseClock](https://github.com/pascal-fb-martin/houseclock): a time synchronization server designed for minimal installation effort and to be as independent from the Internet as possible. This was an answer to a deadly combination of the Raspberry Pi not having a backup clock and one too many power outage. This is also a reaction to ntpd, the high maintenance time synchronization for scientists, not home owners.
+
 * [HouseSensor](https://github.com/pascal-fb-martin/housesensor): instrument your home with 1-Wire temperature sensors. This module depends on gpiod.
+
 * [HouseRelays](https://github.com/pascal-fb-martin/houserelays): control your home through relays (or triacs). This module depends on gpiod.
+
 * [Orvibo](https://github.com/pascal-fb-martin/orvibo): control the Orvibo S20 smart plugs. Too bad this model has been discontinued..
+
 * [HouseWiz](https://github.com/pascal-fb-martin/housewiz): control the Philips Wiz Connected smart bulbs and plugs.
+
 * [HouseKasa](https://github.com/pascal-fb-martin/housekasa): control the TP-Link Kasa bulbs and plugs.
+
 * [WaterWise](https://github.com/pascal-fb-martin/waterwise): get the watering index from the South California Water District. This is for people in the Los Angeles area.
+
 * [HouseSprinkler](https://github.com/pascal-fb-martin/housesprinkler): an irrigation system that schedules your sprinklers. Combine it with [WaterWise](https://github.com/pascal-fb-martin/waterwise) and [HouseRelays](https://github.com/pascal-fb-martin/houserelays) and you get your very own smart irrigation system.
+
 * [HouseLights](https://github.com/pascal-fb-martin/houselights): schedule your home lights when you are on travel, or anything attached to a (smart) plug.
+
 * [HouseDepot](https://github.com/pascal-fb-martin/housedepot): a centralized and versioned store for applications configuration.
 
 All the web services above are based on [echttp](https://github.com/pascal-fb-martin/echttp), a HTTP environment to be embedded in C applications. Provides both a HTTP server, a HTTP client and JSON, XML decoding libraries.
@@ -70,10 +81,15 @@ houseinstall clock sprinkler
 The following services names are supported: clock, sensor, relays, sprinkler, lights, orvibo, wiz, waterwise.
 
 Note that all components of the House software suite follow the same standard installation steps:
+
 * Install all dependencies.
+
 * Clone the git repository.
+
 * Change to the repository directory.
+
 * Execute `make rebuild`
+
 * Execute `sudo make install`
 
 Each component typically run as its own systemd service.
