@@ -120,6 +120,9 @@ for s in $projects ; do
       mech|housemech)
           s=housemech
           ;;
+      cgi|housecgi)
+          s=housecgi
+          ;;
       sun|housesun)
           s=housesun
           ;;
