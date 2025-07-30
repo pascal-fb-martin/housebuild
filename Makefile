@@ -20,6 +20,8 @@ prefix=/usr/local
 
 INSTALL=/usr/bin/install
 
+PACKAGE=build/housebuild
+
 all:
 
 rebuild:
@@ -48,4 +50,14 @@ uninstall-devuan: uninstall
 install-void: install
 
 uninstall-void: uninstall
+
+# Build a private Debian package.
+debian-package:
+	rm -rf build
+	mkdir -p $(PACKAGE)/DEBIAN
+	sed "s/{arch}/`dpkg --print-architecture`/" < debian/control > $(PACKAGE)/DEBIAN/control
+	cp debian/copyright $(PACKAGE)/DEBIAN
+	cp debian/changelog $(PACKAGE)/DEBIAN
+	make DESTDIR=$(PACKAGE) install
+	cd build ; fakeroot dpkg-deb -b housebuild .
 

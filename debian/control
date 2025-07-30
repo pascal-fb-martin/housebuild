@@ -1,0 +1,16 @@
+Source: housebuild
+Version: 1.0b
+Section: Web servers
+Maintainer: Pascal Martin <pascal.fb.martin@gmail.com>
+Priority: optional
+Homepage: https://github.com/pascal-fb-martin/housebuild
+Standard-Version: 4.7.0
+Package: housebuild-dev
+Architecture: all
+Description: A set of helpers to maintain the House software suite
+ The House software suite is a collection of web micro-services that
+ cooperate to provide home automation features.
+ .
+ This package contains shell scripts to help with the maintenance of
+ the whole collection.
+
