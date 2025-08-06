@@ -60,16 +60,16 @@ elif [[ -e /usr/lib/os-release ]] ; then
 fi
 INSTALLTARGET=install-${ID_LIKE:-$ID}
 
-# Install third party dependencies (on Debian and Void for now)
+# Install third party dependencies (on Debian, Devuan and Void for now)
 case ${ID_LIKE:-$ID} in
   debian)
-    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev tcl-dev
+    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev tcl-dev libmagic-dev git-buildpackage
     ;;
   devuan)
-    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev tcl-dev
+    sudo apt install gcc make git libssl-dev icoutils libgpiod-dev uuid-dev tcl-dev libmagic-dev
     ;;
   void)
-    sudo xbps-install gcc make git openssl-devel icoutils libuuid-devel tcl-devel
+    sudo xbps-install gcc make git openssl-devel icoutils libuuid-devel tcl-devel libmagic-devel
     ;;
   *)
     echo "Warning: $ID is not an explicitly supported environment"

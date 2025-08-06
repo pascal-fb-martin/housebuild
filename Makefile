@@ -31,6 +31,7 @@ dev:
 	$(INSTALL) -m 0755 -T houseinstall.sh $(DESTDIR)$(prefix)/bin/houseinstall
 	$(INSTALL) -m 0755 -T housestatus.sh $(DESTDIR)$(prefix)/bin/housestatus
 	$(INSTALL) -m 0755 -T houserebuild.sh $(DESTDIR)$(prefix)/bin/houserebuild
+	$(INSTALL) -m 0755 -T housepublish.sh $(DESTDIR)$(prefix)/bin/housepublish
 
 install: dev
 
@@ -38,6 +39,7 @@ uninstall:
 	rm -f $(DESTDIR)$(prefix)/bin/houseinstall
 	rm -f $(DESTDIR)$(prefix)/bin/housestatus
 	rm -f $(DESTDIR)$(prefix)/bin/houserebuild
+	rm -f $(DESTDIR)$(prefix)/bin/housepublish
 
 install-debian: install
 
@@ -54,10 +56,10 @@ uninstall-void: uninstall
 # Build a private Debian package.
 debian-package:
 	rm -rf build
-	mkdir -p $(PACKAGE)/DEBIAN
-	sed "s/{arch}/`dpkg --print-architecture`/" < debian/control > $(PACKAGE)/DEBIAN/control
-	cp debian/copyright $(PACKAGE)/DEBIAN
-	cp debian/changelog $(PACKAGE)/DEBIAN
+	install -m 0755 -d $(PACKAGE)/DEBIAN
+	install -m 0644 debian/control $(PACKAGE)/DEBIAN
+	install -m 0644 debian/copyright $(PACKAGE)/DEBIAN
+	install -m 0644 debian/changelog $(PACKAGE)/DEBIAN
 	make DESTDIR=$(PACKAGE) install
 	cd build ; fakeroot dpkg-deb -b housebuild .
 

@@ -1,6 +1,6 @@
-housebuild (1.0b) UNREALEASED; urgency=low
+housebuild (2.1) UNREALEASED; urgency=low
 
-   * Initial release.
+   * First release as a Debian package.
 
- -- Pascal Martin <pascal.fb.martin@gmail.com>  Wed, 30 Jul 2025 17:48:19 +0000
+ -- Pascal Martin <pascal.fb.martin@gmail.com>  Wed, 5 Aug 2025 17:46:00 PDT
 
