@@ -40,6 +40,7 @@ uninstall:
 	rm -f $(DESTDIR)$(prefix)/bin/houseinstall
 	rm -f $(DESTDIR)$(prefix)/bin/housestatus
 	rm -f $(DESTDIR)$(prefix)/bin/houserebuild
+	rm -f $(DESTDIR)$(prefix)/bin/housepackage
 	rm -f $(DESTDIR)$(prefix)/bin/housepublish
 
 install-debian: install
