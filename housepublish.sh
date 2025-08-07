@@ -37,6 +37,7 @@ APTLYDB=`echttp_get ~/.aptly.conf ./rootDir`
 SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 
 echo "Dropping any existing snapshot (snapshots depends on the repo??)"
+aptly publish drop $DEBDIST
 for s in `aptly snapshot list -raw` ; do
    aptly snapshot drop $s
 done
