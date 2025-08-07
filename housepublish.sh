@@ -19,73 +19,45 @@
 #
 # HousePublish: install all listed debian package to the local repository.
 #
+# This script was meant for creating a private apt repository,
+# not a repository published on the Internet. Even while this
+# repository is signed (and the key is kept private), there
+# was no security audit of the publising method below. Use caution.
+#
+# NOTE:
+# On the apt client side, set the apt source (.list) file as follow:
+#   deb http://<host>/debian bookworm main
+# and copy http://<host>/debian/house.asc to /etc/apt/trusted.gpg.d
+#
+GPGID="pascal.fb.martin@gmail.com"
+DEBDIST=bookworm
+APTLYDB=/space/Debian/aptly
+SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
+PUBLIC=/usr/local/share/house/public
 
-
-. /etc/os-release
-release=$VERSION_CODENAME
-version=`cat /etc/debian_version`
-suite=stable
-arch=`dpkg --print-architecture`
-
-packages=
-
-for a in $* ; do
-   case $a in
-     --arch=*)
-         array=(${a//=/ })
-         arch=${array[1]}
-         ;;
-     --release=*)
-         array=(${a//=/ })
-         release=${array[1]}
-         ;;
-     --suite=*)
-         array=(${a//=/ })
-         suite=${array[1]}
-         ;;
-     *)
-         packages="$packages $a"
-         ;;
-   esac
+echo "Dropping any existing snapshot (snapshots depends on the repo??)"
+for s in `aptly snapshot list -raw` ; do
+   aptly snapshot drop $s
 done
+aptly repo drop debian
 
-root=/usr/local/share/house/public/debian
-base=$root/dists/$release
-index="$base/main/binary-$arch"
+echo "Creating repository 'debian'"
+aptly repo create -distribution=$DEBDIST -component=main -comment="The House applications repository" debian
 
-install -m 0755 -d $root/pool
-for p in $packages ; do
-   install -m 0644 $p $root/pool
+# This could do a wide "aptly repo add debian .", but this might catch
+# unwanted package some day..
+#
+for i in `find . -name \build` ; do
+    aptly repo add debian $i | grep -v "Loading packages"
 done
+aptly snapshot create $SNAPSHOT from repo debian
+aptly publish snapshot $SNAPSHOT
 
-echo "== Building package index $index/Packages.gz"
-install -m 0755 -d $index
-(cd $root ; dpkg-scanpackages --arch $arch pool/ | gzip -9 > $index/Packages.gz)
+# Copy the repository to the HousePortal public area
+sudo mkdir -p $PUBLIC/debian
+sudo rm -rf $PUBLIC/debian/*
+sudo cp -a $APTLYDB/public/* $PUBLIC/debian
 
-echo "== Building release file $base/Release"
-compute_hashes() {
-  command=$2
-  echo "${1}:"
-  for f in $(find -type f) ; do
-    f=$(echo $f | cut -c3-)
-    if [ "$f" = "Release" ] ; then continue ; fi
-    echo " $(${command} ${f} | cut -d" " -f1) $(wc -c $f)"
-  done
-}
-
-cd $base
-rm -f Release
-echo "Origin: House" >> Release
-echo "Label: House" >> Release
-echo "Suite: $suite" >> Release
-echo "Version: $version" >> Release
-echo "Codename: $release" >> Release
-echo "Date: $(date -Ru)" >> Release
-echo "Architectures: all $arch" >> Release
-echo "Components: main" >> Release
-echo "Description: The House software suite repository" >> Release
-
-compute_hashes "MD5Sum" "md5sum" >> Release
-compute_hashes "SHA1" "sha1sum" >> Release
-compute_hashes "SHA256" "sha256sum" >> Release
+# Publish the public key:
+gpg --armor --export $GPGID | sudo tee -a $PUBLIC/debian/house.asc > /dev/null
 
