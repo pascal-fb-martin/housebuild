@@ -31,9 +31,10 @@
 #
 GPGID="pascal.fb.martin@gmail.com"
 DEBDIST=bookworm
-APTLYDB=/space/Debian/aptly
-SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 PUBLIC=/usr/local/share/house/public
+
+APTLYDB=`echttp_get ~/.aptly.conf ./rootDir`
+SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 
 echo "Dropping any existing snapshot (snapshots depends on the repo??)"
 for s in `aptly snapshot list -raw` ; do
