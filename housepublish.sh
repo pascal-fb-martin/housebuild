@@ -49,7 +49,7 @@ aptly repo create -distribution=$DEBDIST -component=main -comment="The House app
 # This could do a wide "aptly repo add debian .", but this might catch
 # unwanted package some day..
 #
-for i in `find . -name \build` ; do
+for i in `find . -name build` ; do
     aptly repo add debian $i | grep -v "Loading packages"
 done
 aptly snapshot create $SNAPSHOT from repo debian
