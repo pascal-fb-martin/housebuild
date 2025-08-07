@@ -33,7 +33,7 @@ GPGID="pascal.fb.martin@gmail.com"
 DEBDIST=bookworm
 PUBLIC=/usr/local/share/house/public
 
-APTLYDB=`echttp_get ~/.aptly.conf ./rootDir`
+APTLYDB=`echttp_get -r ~/.aptly.conf .rootDir`
 SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 
 echo "Dropping any existing snapshot (snapshots depends on the repo??)"
