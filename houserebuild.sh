@@ -20,7 +20,15 @@
 # HouseRebuild: rebuild all applications present under the current directory.
 #
 
+echo "====== Rebuilding echttp"
+(cd echttp ; make rebuild ; sudo make dev)
+echo "====== Rebuilding houseportal"
+(cd houseportal ; make rebuild ; sudo make dev)
+
 for d in `ls` ; do
+   if [ $d = "echttp" ] ; then continue ; fi
+   if [ $d = "houseportal" ] ; then continue ; fi
+   if [ $d = "housebuild" ] ; then continue ; fi
    if [ -d $d/.git ] ; then
       if [ -e $d/Makefile ] ; then
          echo "====== Rebuilding $d"
