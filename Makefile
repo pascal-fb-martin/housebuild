@@ -31,6 +31,7 @@ dev:
 	$(INSTALL) -m 0755 -T houseinstall.sh $(DESTDIR)$(prefix)/bin/houseinstall
 	$(INSTALL) -m 0755 -T housestatus.sh $(DESTDIR)$(prefix)/bin/housestatus
 	$(INSTALL) -m 0755 -T houserebuild.sh $(DESTDIR)$(prefix)/bin/houserebuild
+	$(INSTALL) -m 0755 -T housepackage.sh $(DESTDIR)$(prefix)/bin/housepackage
 	$(INSTALL) -m 0755 -T housepublish.sh $(DESTDIR)$(prefix)/bin/housepublish
 
 install: dev
