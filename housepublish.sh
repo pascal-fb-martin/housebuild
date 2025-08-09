@@ -24,27 +24,30 @@
 # repository is signed (and the key is kept private), there
 # was no security audit of the publising method below. Use caution.
 #
+# This is a rather primitive and clumsy use of aptly. The goal here
+# is not to manage or maintain apt repositories using aptly, only
+# to use aptly as a tool to generate a repository.
+#
 # NOTE:
 # On the apt client side, set the apt source (.list) file as follow:
 #   deb http://<host>/debian bookworm main
 # and copy http://<host>/debian/house.asc to /etc/apt/trusted.gpg.d
 #
-GPGID="pascal.fb.martin@gmail.com"
-DEBDIST=bookworm
+GPG_ID="pascal.fb.martin@gmail.com"
 PUBLIC=/usr/local/share/house/public
 
-APTLYDB=`echttp_get -r ~/.aptly.conf .rootDir`
+. /etc/os-release
+DEB_DIST=$VERSION_CODENAME
+echo "Building for Debian distribution $DEB_DIST"
+
+APTLY_DB=`echttp_get -r ~/.aptly.conf .rootDir`
 SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 
-echo "Dropping any existing snapshot (snapshots depends on the repo??)"
-aptly publish drop $DEBDIST
-for s in `aptly snapshot list -raw` ; do
-   aptly snapshot drop $s
-done
-aptly repo drop debian
+echo "Annihilating any pre-existing aptly database"
+rm -rf $APTLY_DB/*
 
 echo "Creating repository 'debian'"
-aptly repo create -distribution=$DEBDIST -component=main -comment="The House applications repository" debian
+aptly repo create -distribution=$DEB_DIST -component=main -comment="The House applications repository" debian
 
 # This could do a wide "aptly repo add debian .", but this might catch
 # unwanted package some day..
@@ -56,10 +59,19 @@ aptly snapshot create $SNAPSHOT from repo debian
 aptly publish snapshot $SNAPSHOT
 
 # Copy the repository to the HousePortal public area
-sudo mkdir -p $PUBLIC/debian
-sudo rm -rf $PUBLIC/debian/*
-sudo cp -a $APTLYDB/public/* $PUBLIC/debian
+#
+# The distribution name is part of the root path to support multiple ones.
+# I do realize that aptly can generate repository with multiple distributions,
+# but the mechanisms to select which packages go where remain obscure to me.
+# The goal here is very limited: facilitate the transition during upgrades
+# by not destroying the existing repository right away. The development
+# machines would upgrade first: while testing the upgrade the not-yet
+# upgraded machines can still access an appropriate repository.
+# 
+sudo mkdir -p $PUBLIC/debian/$DEB_DIST
+sudo rm -rf $PUBLIC/debian/$DEB_DIST/*
+sudo cp -a $APTLY_DB/public/* $PUBLIC/debian/$DEB_DIST
 
 # Publish the public key:
-gpg --armor --export $GPGID | sudo tee -a $PUBLIC/debian/house.asc > /dev/null
+gpg --armor --export $GPG_ID | sudo tee -a $PUBLIC/debian/house.asc > /dev/null
 
