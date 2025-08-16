@@ -33,6 +33,7 @@ dev:
 	$(INSTALL) -m 0755 -T houserebuild.sh $(DESTDIR)$(prefix)/bin/houserebuild
 	$(INSTALL) -m 0755 -T housepackage.sh $(DESTDIR)$(prefix)/bin/housepackage
 	$(INSTALL) -m 0755 -T housepublish.sh $(DESTDIR)$(prefix)/bin/housepublish
+	$(INSTALL) -m 0755 -T housepull.sh $(DESTDIR)$(prefix)/bin/housepull
 
 install: dev
 
@@ -42,6 +43,7 @@ uninstall:
 	rm -f $(DESTDIR)$(prefix)/bin/houserebuild
 	rm -f $(DESTDIR)$(prefix)/bin/housepackage
 	rm -f $(DESTDIR)$(prefix)/bin/housepublish
+	rm -f $(DESTDIR)$(prefix)/bin/housepull
 
 install-debian: install
 
