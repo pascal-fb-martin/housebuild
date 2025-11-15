@@ -17,6 +17,16 @@ The following web services are currently part of the suite:
 
 * [HouseClock](https://github.com/pascal-fb-martin/houseclock): a time synchronization server designed for minimal installation effort and to be as independent from the Internet as possible. This was an answer to a deadly combination of the Raspberry Pi not having a backup clock and one too many power outage. This is also a reaction to ntpd, the high maintenance time synchronization for scientists, not home owners.
 
+* [HouseLinux](https://github.com/pascal-fb-martin/houselinux): collect performance and activity metrics on Linux.
+
+* [HouseCGI](https://github.com/pascal-fb-martin/housecgi): support for the web CGI mechanism.
+
+* [HouseDepot](https://github.com/pascal-fb-martin/housedepot): a centralized and versioned store for applications configuration.
+
+* [HouseSaga](https://github.com/pascal-fb-martin/housesaga): a centralized consolidation and archivage service for all logs.
+
+* [HouseNote](https://github.com/pascal-fb-martin/housenote): share notes and documents.
+
 * [HouseSensor](https://github.com/pascal-fb-martin/housesensor): instrument your home with 1-Wire temperature sensors. This module depends on gpiod.
 
 * [HouseRelays](https://github.com/pascal-fb-martin/houserelays): control your home through relays (or triacs). This module depends on gpiod.
@@ -27,13 +37,25 @@ The following web services are currently part of the suite:
 
 * [HouseKasa](https://github.com/pascal-fb-martin/housekasa): control the TP-Link Kasa bulbs and plugs.
 
-* [WaterWise](https://github.com/pascal-fb-martin/waterwise): get the watering index from the South California Water District. This is for people in the Los Angeles area.
-
-* [HouseSprinkler](https://github.com/pascal-fb-martin/housesprinkler): an irrigation system that schedules your sprinklers. Combine it with [WaterWise](https://github.com/pascal-fb-martin/waterwise) and [HouseRelays](https://github.com/pascal-fb-martin/houserelays) and you get your very own smart irrigation system.
+* [HouseTuya](https://github.com/pascal-fb-martin/housetuya): control bulbs and plugs that use the Tuya protocol.
 
 * [HouseLights](https://github.com/pascal-fb-martin/houselights): schedule your home lights when you are on travel, or anything attached to a (smart) plug.
 
-* [HouseDepot](https://github.com/pascal-fb-martin/housedepot): a centralized and versioned store for applications configuration.
+* [HouseSprinkler](https://github.com/pascal-fb-martin/housesprinkler): an irrigation system that schedules your sprinklers. Combine it with [WaterWise](https://github.com/pascal-fb-martin/waterwise) and [HouseRelays](https://github.com/pascal-fb-martin/houserelays) and you get your very own smart irrigation system.
+
+* [WaterWise](https://github.com/pascal-fb-martin/waterwise): get the watering index from the South California Water District. This is for people in the Los Angeles area.
+
+* [HouseCimis](https://github.com/pascal-fb-martin/housecimis): calculate the watering based on the state of California CIMIS Et0 values.
+
+* [HouseMech](https://github.com/pascal-fb-martin/housemech): automate your home lights based on events and other input status.
+
+* [HouseAlmanach](https://github.com/pascal-fb-martin/housealmanach): provide a locally estimated time of day for sunrise and sunset.
+
+* [HouseSun](https://github.com/pascal-fb-martin/housesun): provide the time of day for sunrise and sunset, based on the [Sunrise-Sunset.org](https://sunrise-sunset.org) web site.
+
+* [HouseDVR](https://github.com/pascal-fb-martin/housedvr): collect, store and give access to video security recordings.
+
+* [HouseMotion](https://github.com/pascal-fb-martin/housemotion): Interface the Motion service with HouseDVR.
 
 All the web services above are based on [echttp](https://github.com/pascal-fb-martin/echttp), a HTTP environment to be embedded in C applications. Provides both a HTTP server, a HTTP client and JSON, XML decoding libraries.
 

@@ -30,7 +30,7 @@ dev:
 	$(INSTALL) -m 0755 -d $(DESTDIR)$(prefix)/bin
 	$(INSTALL) -m 0755 -T houseinstall.sh $(DESTDIR)$(prefix)/bin/houseinstall
 	$(INSTALL) -m 0755 -T housestatus.sh $(DESTDIR)$(prefix)/bin/housestatus
-	$(INSTALL) -m 0755 -T housepull.sh $(DESTDIR)$(prefix)/bin/housepull
+	$(INSTALL) -m 0755 -T housegit.sh $(DESTDIR)$(prefix)/bin/housegit
 	$(INSTALL) -m 0755 -T houserebuild.sh $(DESTDIR)$(prefix)/bin/houserebuild
 	$(INSTALL) -m 0755 -T housepackage.sh $(DESTDIR)$(prefix)/bin/housepackage
 	$(INSTALL) -m 0755 -T housedeploy.sh $(DESTDIR)$(prefix)/bin/housedeploy
@@ -41,7 +41,7 @@ install: dev
 uninstall:
 	rm -f $(DESTDIR)$(prefix)/bin/houseinstall
 	rm -f $(DESTDIR)$(prefix)/bin/housestatus
-	rm -f $(DESTDIR)$(prefix)/bin/housepull
+	rm -f $(DESTDIR)$(prefix)/bin/housegit
 	rm -f $(DESTDIR)$(prefix)/bin/houserebuild
 	rm -f $(DESTDIR)$(prefix)/bin/housepackage
 	rm -f $(DESTDIR)$(prefix)/bin/housedeploy

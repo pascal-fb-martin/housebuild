@@ -25,5 +25,5 @@
 
 cd ~/Projects
 clear
-for i in `ls` ; do if [[ -d $i/.git ]] ; then (echo "=============================================== $i" ; cd $i ; git pull) ; fi; done
+for i in `ls` ; do if [[ -d $i/.git ]] ; then (echo "=============================================== $i" ; cd $i ; git $*) ; fi; done
 
