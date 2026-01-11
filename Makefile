@@ -35,6 +35,7 @@ dev:
 	$(INSTALL) -m 0755 -T housepackage.sh $(DESTDIR)$(prefix)/bin/housepackage
 	$(INSTALL) -m 0755 -T housedeploy.sh $(DESTDIR)$(prefix)/bin/housedeploy
 	$(INSTALL) -m 0755 -T housepublish.sh $(DESTDIR)$(prefix)/bin/housepublish
+	rm -f $(DESTDIR)$(prefix)/bin/housepull
 
 install: dev
 
