@@ -41,9 +41,11 @@ PUBLIC=/usr/local/share/house/public
 DEB_DIST=$VERSION_CODENAME
 echo "=== Building for Debian distribution $DEB_DIST"
 
-# Run aptly at least once to create the default configuration
-aptly config show > /dev/null
-APTLY_DB=`echttp_get -r ~/.aptly.conf .rootDir`
+# Extract the Aptly configuration to retrieve the path to its database
+mkdir ~/tmp
+aptly config show > ~/tmp/aptly$$.conf
+APTLY_DB=`echttp_get -r ~/tmp/aptly$$.conf .rootDir`
+rm -f ~/tmp/aptly$$.conf
 if [[ "x$APTLY_DB" = "x" ]] then
     echo "No aptly DB found"
     exit 1
