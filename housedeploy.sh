@@ -41,10 +41,13 @@ PUBLIC=/usr/local/share/house/public
 DEB_DIST=$VERSION_CODENAME
 echo "=== Building for Debian distribution $DEB_DIST"
 
+# Run aptly at least once to create the default configuration
+aptly config show > /dev/null
 APTLY_DB=`echttp_get -r ~/.aptly.conf .rootDir`
 SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 
 echo "=== Annihilating any pre-existing aptly database"
+mkdir -p $APTLY_DB
 rm -rf $APTLY_DB/*
 
 echo "=== Creating repository 'debian'"
