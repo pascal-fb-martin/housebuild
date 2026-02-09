@@ -42,9 +42,9 @@ DEB_DIST=$VERSION_CODENAME
 echo "=== Building for Debian distribution $DEB_DIST"
 
 # Extract the Aptly configuration to retrieve the path to its database
-mkdir ~/tmp
+mkdir -p ~/tmp
 aptly config show > ~/tmp/aptly$$.conf
-APTLY_DB=`echttp_get -r ~/tmp/aptly$$.conf .rootDir`
+eval APTLY_DB=`echttp_get -r ~/tmp/aptly$$.conf .rootDir`
 rm -f ~/tmp/aptly$$.conf
 if [[ "x$APTLY_DB" = "x" ]] then
     echo "No aptly DB found"
@@ -52,7 +52,7 @@ if [[ "x$APTLY_DB" = "x" ]] then
 fi
 SNAPSHOT="debian-`date '+%Y%m%d-%H%M%S'`"
 
-echo "=== Annihilating any pre-existing aptly database"
+echo "=== Annihilating any pre-existing aptly database in $APTLY_DB"
 mkdir -p $APTLY_DB
 rm -rf $APTLY_DB/*
 
