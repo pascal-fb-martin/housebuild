@@ -36,6 +36,7 @@ dev:
 	$(INSTALL) -m 0755 -T housedeploy.sh $(DESTDIR)$(prefix)/bin/housedeploy
 	$(INSTALL) -m 0755 -T housepublish.sh $(DESTDIR)$(prefix)/bin/housepublish
 	$(INSTALL) -m 0755 -T housegenerate.sh $(DESTDIR)$(prefix)/bin/housegenerate
+	$(INSTALL) -m 0755 -T housereplica.sh $(DESTDIR)$(prefix)/bin/housereplica
 	rm -f $(DESTDIR)$(prefix)/bin/housepull
 
 install: dev
@@ -49,6 +50,7 @@ uninstall:
 	rm -f $(DESTDIR)$(prefix)/bin/housedeploy
 	rm -f $(DESTDIR)$(prefix)/bin/housepublish
 	rm -f $(DESTDIR)$(prefix)/bin/housegenerate
+	rm -f $(DESTDIR)$(prefix)/bin/housereplica
 
 install-debian: install
 
