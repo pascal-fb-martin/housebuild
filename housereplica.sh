@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2025, Pascal Martin
+# Copyright 2026, Pascal Martin
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,14 +17,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 #
-# HouseGit: Operate on all git repositories present in the current directory.
-#
-# NOTE: this command skips any subdirectory named 'configuration', as this
-# project follows its own specific rules.
+# HouseGenerate: generate the Debian repository from all applications
+# sources present under the current directory.
 #
 
-cd ~/Projects
-clear
-PROJECTS=`ls | grep -v configuration`
-for i in $PROJECTS ; do if [[ -d $i/.git ]] ; then (echo "=============================================== $i" ; cd $i ; git $* ; exit $?) ; if [ $? -ne 0 ] ; then exit 1 ; fi ; fi; done
+housegit pull && houserebuild && housepackage && housedeploy
 
