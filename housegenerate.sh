@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright 2020, Pascal Martin
+# Copyright 2026, Pascal Martin
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -17,17 +17,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 #
-# HousePackage: rebuild Debian packages for all applications present
-# under the current directory.
+# HouseGenerate: generate the Debian repository from all applications
+# sources present under the current directory.
 #
 
-for d in `ls` ; do
-   if [ -d $d/.git ] ; then
-      if [ -e $d/Makefile ] ; then
-         echo "====== Packaging $d"
-         (cd $d ; make debian-package ; exit $?)
-         if [ $? -ne 0 ] ; then exit 1 ; fi
-      fi
-   fi
-done
+houserebuild && housepackage && housedeploy
 

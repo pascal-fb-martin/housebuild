@@ -57,6 +57,14 @@ The following web services are currently part of the suite:
 
 * [HouseMotion](https://github.com/pascal-fb-martin/housemotion): Interface the Motion service with HouseDVR.
 
+* [HouseTest](https://github.com/pascal-fb-martin/housetest): A suite of test application, including a GPIO simulation service that can also be used as a pseudo-input service.
+
+The following web services are side projects, not directly related to home automation:
+
+* [HouseDCC](https://github.com/pascal-fb-martin/housedcc): control movements of DCC trains and locomotives.
+
+* [PiDCC](https://github.com/pascal-fb-martin/pidcc): the DCC booster portion of [HouseDCC](https://github.com/pascal-fb-martin/housedcc) above.
+
 All the web services above are based on [echttp](https://github.com/pascal-fb-martin/echttp), a HTTP environment to be embedded in C applications. Provides both a HTTP server, a HTTP client and JSON, XML decoding libraries.
 
 The services typically follow one of these web interfaces:
@@ -68,6 +76,8 @@ The services typically follow one of these web interfaces:
 * Sensor: locate and read digital and analog sensors.
 
 * Waterindex: locate and get a watering index to adjust sprinkler times according to the current weather.
+
+* Almanac: provide the sunrise and sunset times.
 
 ## Installation Tool
 

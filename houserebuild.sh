@@ -21,9 +21,12 @@
 #
 
 echo "====== Rebuilding echttp"
-(cd echttp ; make rebuild ; sudo make dev)
+(cd echttp ; make rebuild && sudo make dev ; exit $?)
+if [ $? -ne 0 ] ; then exit 1 ; fi
+
 echo "====== Rebuilding houseportal"
-(cd houseportal ; make rebuild ; sudo make dev)
+(cd houseportal ; make rebuild && sudo make dev ; exit $?)
+if [ $? -ne 0 ] ; then exit 1 ; fi
 
 for d in `ls` ; do
    if [ $d = "echttp" ] ; then continue ; fi
@@ -32,7 +35,8 @@ for d in `ls` ; do
    if [ -d $d/.git ] ; then
       if [ -e $d/Makefile ] ; then
          echo "====== Rebuilding $d"
-         (cd $d ; make rebuild)
+         (cd $d ; make rebuild ; exit $?)
+         if [ $? -ne 0 ] ; then exit 1 ; fi
       fi
    fi
 done
