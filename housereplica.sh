@@ -17,8 +17,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor,
 # Boston, MA  02110-1301, USA.
 #
-# HouseGenerate: generate the Debian repository from all applications
-# sources present under the current directory.
+# HouseReplica: update from the origin repositories and generate
+#               the Debian repository for all applications
+#               sources present under the current directory.
 #
 
 housegit pull && houserebuild && housepackage && housedeploy
