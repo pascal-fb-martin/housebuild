@@ -30,4 +30,5 @@ for d in `ls` ; do
       fi
    fi
 done
+echo "====== Done"
 
